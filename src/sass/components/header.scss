@@ -1,0 +1,55 @@
+@use '@material/icon-button';
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  padding: 0 1rem;
+  background-color: lighten($light-color, 10%);
+  box-shadow: 0 1px 0 1px rgba(0,0,0,0.05);
+  z-index: 2;
+
+  .header__logo {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .header__preview-color {
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(26,26,26,0.3);
+    border-radius: 50%;
+    background-color: currentColor;
+    transition: background-color 300ms ease;
+  }
+
+  [data-btn-info] {
+    @include icon-button.icon-size(18px);
+  }
+  [data-btn-color-picker] > .mdc-button__icon {
+    fill: inherit;
+  }
+
+  .header__input-wrapper {
+    .mdc-text-field {
+      padding: 0;
+      .mdc-text-field__input {
+        max-width: 110px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-weight: 700;
+      }
+
+      &.mdc-text-field--with-leading-icon {
+        .mdc-text-field__icon {
+          margin: 0 8px;
+        }
+        .mdc-text-field__input {
+          max-width: 60px;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
