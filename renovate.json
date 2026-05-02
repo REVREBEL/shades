@@ -13,8 +13,10 @@
       "groupName": "legacy package replacements"
     },
     {
-      "matchPackagePatterns": ["^@material/"],
-      "groupName": "material components web"
+      "groupName": "material components web",
+      "matchPackageNames": [
+        "/^@material//"
+      ]
     },
     {
       "matchPackageNames": ["gulp", "gulp-sass", "sass", "gulp-autoprefixer"],
