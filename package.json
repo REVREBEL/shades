@@ -24,7 +24,7 @@
     "@material/snackbar": "^6.0.0",
     "@material/textfield": "^6.0.0",
     "@simonwep/pickr": "^1.5.1",
-    "copy-text-to-clipboard": "^2.2.0",
+    "copy-text-to-clipboard": "^3.0.0",
     "values.js": "^2.0.0"
   },
   "devDependencies": {
