@@ -42,7 +42,7 @@
     "gulp-connect": "^5.7.0",
     "gulp-sass": "^6.0.0",
     "gulp-uglify-es": "^3.0.0",
-    "rollup": "^4.0.0",
+    "rollup": "^4.60.3",
     "@rollup/plugin-babel": "^7.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
