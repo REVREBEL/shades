@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "ignorePatterns": ["node_modules/", "dist/"],
   "env": {
     "browser": true,
@@ -8,8 +8,9 @@
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "rules": {
     "semi": "error"

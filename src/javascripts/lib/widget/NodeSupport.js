@@ -2,8 +2,8 @@ import EventSupport from './EventSupport';
 
 export default class NodeSupport extends EventSupport {
 
-  parent = null
-  children = []
+  parent = null;
+  children = [];
 
   appendChild(child) {
     child.parent?.removeChild(child);

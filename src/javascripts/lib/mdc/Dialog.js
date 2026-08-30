@@ -8,7 +8,7 @@ export default class Dialog extends Widget {
 
   static defaults = {
     title: ''
-  }
+  };
 
   template() {
     return `
@@ -27,7 +27,7 @@ export default class Dialog extends Widget {
     return '';
   }
 
-  mdcdialog = null
+  mdcdialog = null;
 
   constructor(config) {
     super(config);

@@ -7,7 +7,7 @@ export default class SVGIcon extends Widget {
     content: '',
     width: 24,
     height: 24
-  }
+  };
 
   template() {
     return `

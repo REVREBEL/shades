@@ -134,3 +134,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.eslintrc
+.eslintrc
+eslint.config.js
+src/javascripts/lib/widget/NodeSupport.js
+src/javascripts/lib/widget/index.js
+src/javascripts/lib/widget/EventSupport.js
+src/javascripts/lib/mdc/TextField.js
+src/javascripts/lib/mdc/SVGIcon.js
+/src/javascripts
+/src/javascripts

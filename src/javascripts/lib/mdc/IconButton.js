@@ -17,7 +17,7 @@ export default class IconButton extends Widget {
     `;
     }
 
-  mdcripple = null
+  mdcripple = null;
 
   constructor(config) {
     super(config);

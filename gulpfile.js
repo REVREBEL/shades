@@ -1,15 +1,57 @@
 const { src, dest, parallel, watch } = require('gulp'),
-  rollup          = require('gulp-better-rollup'),
-  babel           = require('rollup-plugin-babel'),
-  sass            = require('gulp-sass'),
+  { rollup }      = require('rollup'),
+  { babel }       = require('@rollup/plugin-babel'),
+  sass            = require('gulp-sass')(require('sass')),
   autoprefixer    = require('gulp-autoprefixer'),
   uglify          = require('gulp-uglify-es').default,
   connect         = require('gulp-connect'),
   rootImport      = require('rollup-plugin-root-import'),
-  nodeResolve     = require('rollup-plugin-node-resolve'),
-  commonjs        = require('rollup-plugin-commonjs');
+  { nodeResolve } = require('@rollup/plugin-node-resolve'),
+  commonjs        = require('@rollup/plugin-commonjs');
 
-sass.compiler = require('sass');
+const sassOptions = {
+  loadPaths: [
+    'node_modules',
+    require('path').resolve(__dirname, 'node_modules')
+  ]
+};
+
+const rollupOptions = {
+  input: 'src/javascripts/index.js',
+  plugins: [
+    nodeResolve({
+      mainFields: ['module', 'main', 'browser']
+    }),
+    commonjs({
+      include: [/node_modules/]
+    }),
+    rootImport({
+      root: `src/javascripts`,
+      extensions: '.js'
+    }),
+    babel({
+      babelHelpers: 'bundled'
+    })
+  ]
+};
+
+const rollupOutputOptions = {
+  file: 'dist/js/index.js',
+  format: 'umd',
+  name: 'Shadowlord'
+};
+
+const streamToPromise = (stream) => new Promise((resolve, reject) => {
+  stream.on('end', resolve);
+  stream.on('finish', resolve);
+  stream.on('error', reject);
+});
+
+const bundleScripts = async () => {
+  const bundle = await rollup(rollupOptions);
+  await bundle.write(rollupOutputOptions);
+  await bundle.close();
+};
 
 const serverTask = (done) => {
   connect.server({
@@ -21,39 +63,13 @@ const serverTask = (done) => {
 };
 
 const stylesTask = () => src('src/sass/app.scss')
-  .pipe(sass({
-    includePaths: [
-      'node_modules',
-      require('path').resolve(__dirname, 'node_modules')
-    ]
-  }))
+  .pipe(sass.sync(sassOptions))
   .pipe(autoprefixer('last 2 version'))
   .pipe(dest('dist/css'))
   .pipe(connect.reload());
 
-const scriptsTask = () => src('src/javascripts/index.js')
-  .pipe(rollup({
-    rollup: require('rollup'),
-    // There is no `input` option as rollup integrates into the gulp pipeline
-    plugins: [
-      nodeResolve({
-        mainFields: ['module', 'main', 'browser']
-      }),
-      commonjs({
-        include: [/node_modules/]
-      }),
-      rootImport({
-        root: `src/javascripts`,
-        extensions: '.js'
-      }),
-      babel()
-    ]
-  }, {
-    // Rollups `sourcemap` option is unsupported. Use `gulp-sourcemaps` plugin instead
-    format: 'umd',
-  }))
-  .pipe(dest('dist/js'))
-  .pipe(connect.reload());
+const scriptsTask = () => bundleScripts()
+  .then(() => streamToPromise(src('dist/js/index.js').pipe(connect.reload())));
 
 const htmlTask = () => src('*.html').pipe(connect.reload());
 
@@ -64,13 +80,17 @@ const watchTask = (done) => {
   done();
 };
 
-const stylesDist = () => src('dist/css/app.css')
-  .pipe(sass({ outputStyle: 'compressed' }))
+const stylesDist = () => src('src/sass/app.scss')
+  .pipe(sass.sync({
+    ...sassOptions,
+    outputStyle: 'compressed'
+  }))
   .pipe(dest('dist/css'));
 
-const scriptsDist = () => src('dist/js/index.js')
+const scriptsDist = () => bundleScripts()
+  .then(() => streamToPromise(src('dist/js/index.js')
   .pipe(uglify())
-  .pipe(dest('dist/js/'));
+  .pipe(dest('dist/js/'))));
 
 exports.default = parallel(watchTask, serverTask);
 exports.build = parallel(stylesDist, scriptsDist);

@@ -3,7 +3,7 @@ import ColorItem from '/components/ColorItem';
 
 export default class ColorsCollection extends Widget {
 
-  static totalElements = 201
+  static totalElements = 201;
 
   template() {
     return `

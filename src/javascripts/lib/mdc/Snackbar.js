@@ -12,7 +12,7 @@ export default class Snackbar extends Widget {
     timeoutMs: 5000,
     labelText: '',
     leading: false
-  }
+  };
 
   template() {
     return `
@@ -26,7 +26,7 @@ export default class Snackbar extends Widget {
     </div>`;
   }
 
-  mdcsnackbar = null
+  mdcsnackbar = null;
 
   constructor(config) {
     super(config);

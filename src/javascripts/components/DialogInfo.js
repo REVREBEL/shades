@@ -3,7 +3,7 @@ import { Launch } from '/lib/mdc/icons/index';
 
 export default class DialogInfo extends Dialog {
 
-  static ELEMENT_CLASS = 'dialog_info'
+  static ELEMENT_CLASS = 'dialog_info';
 
   content() {
     return `

@@ -13,12 +13,12 @@ export default class App extends NodeSupport {
   static defaults = {
     color: '#6200ee',
     percentage: 3
-  }
+  };
 
-  header = null
-  colorsCollection = null
-  _hash = location.hash
-  _values = new Values()
+  header = null;
+  colorsCollection = null;
+  _hash = location.hash;
+  _values = new Values();
 
   constructor(config = {}) {
     super();

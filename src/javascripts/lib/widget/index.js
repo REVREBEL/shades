@@ -6,16 +6,16 @@ import { createElementFromString, placeholderString, replaceTemplateWidgets } fr
 
 export default class Widget extends NodeSupport {
 
-  static ELEMENT_CLASS = 'widget'
+  static ELEMENT_CLASS = 'widget';
 
   static defaults = {
     el: null,
     className: null,
     attr: {}
-  }
+  };
 
-  active = false
-  __destroyed = false
+  active = false;
+  __destroyed = false;
 
   constructor(config = {}) {
     super();

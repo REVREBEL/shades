@@ -12,7 +12,7 @@ export default class ColorItem extends Widget {
     SHADE: '-is-shade',
     LIGHT: '-is-light',
     DARK: '-is-dark'
-  }
+  };
 
   template() {
     return `
@@ -33,7 +33,7 @@ export default class ColorItem extends Widget {
   `;
   }
 
-  color = null
+  color = null;
 
   constructor(config) {
     super(config);

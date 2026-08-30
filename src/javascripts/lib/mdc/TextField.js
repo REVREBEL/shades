@@ -8,10 +8,10 @@ export default class TextField extends Widget {
 
   static defaults = {
     useNativeValidation: true
-  }
+  };
 
-  input = null
-  mdctextfield = null
+  input = null;
+  mdctextfield = null;
 
   constructor(config) {
     super(config);

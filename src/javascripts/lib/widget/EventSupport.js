@@ -1,6 +1,6 @@
 export default class EventSupport {
 
-  listeners = {}
+  listeners = {};
 
   bind(type, handler) {
     if (!this.listeners[type]) {

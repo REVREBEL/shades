@@ -12,14 +12,14 @@ export default class Header extends Widget {
   static defaults = {
     color: '#000',
     percentage: 20
-  }
+  };
 
-  pickr = null
-  colorInput = null
-  infoBtn = null
-  rangeInput = null
-  randomColorBtn = null
-  dialog = null
+  pickr = null;
+  colorInput = null;
+  infoBtn = null;
+  rangeInput = null;
+  randomColorBtn = null;
+  dialog = null;
 
   constructor(config) {
     super(config);

@@ -13,7 +13,7 @@ export const isValidColorModel = (color) => {
     new Values(color);
     return true;
   }
-  catch(e) {
+  catch {
     return false;
   }
 };
